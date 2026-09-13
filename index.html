@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PhishLens | Threat Intelligence</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         CINEMATIC BACKGROUND
+    ====================================================== -->
+
+    <div class="background-grid"></div>
+
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🛡️
+            </div>
+
+            <div>
+
+                <h2>PHISHLENS</h2>
+
+                <span>
+                    EMAIL THREAT INTELLIGENCE
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-status">
+
+            <span class="status-dot"></span>
+
+            SYSTEM ONLINE
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         MAIN SYSTEM
+    ====================================================== -->
+
+    <main class="container">
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-badge">
+
+                <span>●</span>
+
+                THREAT INTELLIGENCE SYSTEM
+
+            </div>
+
+
+            <h1>
+
+                Detect the threat
+                <br>
+
+                <span>before you trust the email.</span>
+
+            </h1>
+
+
+            <p>
+
+                Analyze email content, headers, links and
+                threat indicators through a defensive
+                heuristic intelligence engine.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANALYZER
+        ================================================== -->
+
+        <section class="analyzer-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="section-number">
+                        01
+                    </span>
+
+                    <h2>
+                        Email Threat Scanner
+                    </h2>
+
+                </div>
+
+
+                <span class="secure-label">
+
+                    🔒 LOCAL ANALYSIS
+
+                </span>
+
+            </div>
+
+
+
+            <!-- INPUT -->
+
+            <div class="input-wrapper">
+
+                <label for="emailInput">
+
+                    PASTE EMAIL CONTENT / RAW HEADERS
+
+                </label>
+
+
+                <textarea
+                    id="emailInput"
+                    spellcheck="false"
+                    placeholder="From: security@paypa1-support.com
+
+Subject: URGENT! Verify your account immediately
+
+Your account has been temporarily restricted.
+
+Click here to verify your account:
+https://paypa1-support.com/verify
+
+Received: from mail.example.com (185.199.108.153)"
+                ></textarea>
+
+
+                <div class="input-footer">
+
+                    <span id="charCount">
+                        0 characters
+                    </span>
+
+
+                    <button
+                        class="clear-btn"
+                        onclick="clearEmail()"
+                    >
+
+                        CLEAR
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SCAN BUTTON -->
+
+            <button
+                class="scan-button"
+                onclick="analyzeEmail()"
+            >
+
+                <span class="scan-icon">
+                    ◉
+                </span>
+
+                <span>
+                    ANALYZE EMAIL
+                </span>
+
+                <span class="arrow">
+                    →
+                </span>
+
+            </button>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             RESULTS
+        ================================================== -->
+
+        <section
+            id="resultsSection"
+            class="results-section hidden"
+        >
+
+
+            <!-- RESULTS HEADER -->
+
+            <div class="results-title">
+
+                <div>
+
+                    <span class="section-number">
+                        02
+                    </span>
+
+                    <h2>
+                        Threat Intelligence Report
+                    </h2>
+
+                </div>
+
+
+                <span id="analysisTime">
+                    Analysis completed
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SCORE + SUMMARY
+            ================================================== -->
+
+            <div class="result-grid">
+
+
+                <!-- SCORE -->
+
+                <div class="score-card">
+
+                    <div class="score-label">
+                        THREAT SCORE
+                    </div>
+
+
+                    <div
+                        class="score-circle"
+                        id="scoreCircle"
+                    >
+
+                        <div class="score-inner">
+
+                            <strong id="scoreValue">
+                                0
+                            </strong>
+
+                            <span>
+                                / 100
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="riskStatus"S
+                        class="risk-status"
+                    >
+                        SAFE
+                    </div>
+
+
+                    <p id="riskDescription">
+
+                        No significant threat indicators
+                        detected.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- SUMMARY -->
+
+                <div class="summary-card">
+
+                    <div class="summary-header">
+
+                        <h3>
+                            Threat Summary
+                        </h3>
+
+
+                        <span
+                            id="riskBadge"
+                            class="risk-badge"
+                        >
+                            SAFE
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="indicator-list"
+                        id="indicatorList"
+                    >
+
+                        <!-- JavaScript inserts findings -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 INTELLIGENCE
+            ================================================== -->
+
+            <div class="intel-grid">
+
+
+                <!-- SENDER -->
+
+                <div class="intel-card">
+
+                    <div class="intel-icon">
+                        ✉️
+                    </div>
+
+                    <div>
+
+                        <span class="intel-label">
+                            SENDER
+                        </span>
+
+                        <h3 id="senderInfo">
+                            Not detected
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- IP -->
+
+                <div class="intel-card">
+
+                    <div class="intel-icon">
+                        🌐
+                    </div>
+
+                    <div>
+
+                        <span class="intel-label">
+                            SOURCE IP
+                        </span>
+
+                        <h3 id="ipInfo">
+                            Not detected
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LOCATION -->
+
+                <div class="intel-card">
+
+                    <div class="intel-icon">
+                        📍
+                    </div>
+
+                    <div>
+
+                        <span class="intel-label">
+                            GEOLOCATION
+                        </span>
+
+                        <h3 id="locationInfo">
+                            Not available
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DOMAIN -->
+
+                <div class="intel-card">
+
+                    <div class="intel-icon">
+                        🔗
+                    </div>
+
+                    <div>
+
+                        <span class="intel-label">
+                            DOMAIN
+                        </span>
+
+                        <h3 id="domainInfo">
+                            Not detected
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FORENSIC ANALYSIS
+            ================================================== -->
+
+            <div class="forensic-card">
+
+
+                <div class="forensic-header">
+
+                    <div>
+
+                        <span class="section-number">
+                            03
+                        </span>
+
+                        <h2>
+                            Forensic Intelligence Report
+                        </h2>
+
+                    </div>
+
+
+                    <span
+                        class="report-id"
+                        id="reportId"
+                    >
+                        MS-000000
+                    </span>
+
+                </div>
+
+
+
+                <!-- TERMINAL -->
+
+                <div class="terminal">
+
+
+                    <div class="terminal-top">
+
+                        <div class="terminal-buttons">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+
+                        <span>
+                            FORENSIC_ANALYZER.LOG
+                        </span>
+
+                    </div>
+
+
+
+                    <div
+                        class="terminal-content"
+                        id="forensicReport"
+                    >
+
+                        Waiting for analysis...
+
+                    </div>
+
+                </div>
+
+            </div>
+<button class="download-report" onclick="downloadReport()">
+    <span>↓</span>
+    DOWNLOAD FORENSIC REPORT
+</button>
+
+
+            <!-- =================================================
+                 SECURITY RECOMMENDATION
+            ================================================== -->
+
+            <div
+                class="recommendation"
+                id="recommendation"
+            >
+
+                <div class="recommendation-icon">
+                    ⚠️
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        SECURITY RECOMMENDATION
+                    </strong>
+
+
+                    <p id="recommendationText">
+
+                        Analyze the email before interacting
+                        with links or attachments.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer>
+
+            <div>
+                🛡️ PHISHLENS
+            </div>
+
+
+            <span>
+                PROTOTYPE • DEFENSIVE EMAIL SECURITY
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
